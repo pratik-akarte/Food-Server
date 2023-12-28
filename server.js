@@ -4,7 +4,13 @@ const fetch = require("cross-fetch");
 
 const app = express();
 const port = process.env.PORT || 3000;
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://food-io.netlify.app/"],
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
 app.get("/api/restaurants", (req, res) => {
   const url = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.0969958&lng=79.12415879999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
